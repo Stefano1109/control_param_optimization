@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分享示例</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>控制优化</h1>
+  <label for="controlIndicator">控制指标：</label>
+  <input type="text" id="controlIndicator" placeholder="输入控制指标">
+
+  <label for="runSettings">运行设置：</label>
+  <input type="text" id="runSettings" placeholder="输入运行设置">
+
+  <button onclick="showResults()">查看结果</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function showResults() {
+    var controlIndicator = document.getElementById("controlIndicator").value;
+    var runSettings = document.getElementById("runSettings").value;
+    var resultDiv = document.getElementById("result");
+
+    // 在这里执行你的处理逻辑，生成结果
+    var result = "控制指标: " + controlIndicator + "<br>运行设置: " + runSettings;
+    resultDiv.innerHTML = result;
+  }
+</script>
+</body>
+</html>
