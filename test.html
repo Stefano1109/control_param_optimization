@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>分享示例</title>
+<title>控制参数优化</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -19,6 +19,7 @@
   label {
     display: block;
     margin-bottom: 5px;
+    text-align: left;
   }
 
   input {
@@ -52,26 +53,37 @@
 </head>
 <body>
 <div class="container">
-  <h1>控制优化</h1>
-  <label for="controlIndicator">控制指标：</label>
-  <input type="text" id="controlIndicator" placeholder="输入控制指标">
+  <h1>控制参数优化</h1>
+  <label for="runParameter1">运行参数1：输入电压（V）</label>
+  <input type="number" id="runParameter1" placeholder="输入电压">
 
-  <label for="runSettings">运行设置：</label>
-  <input type="text" id="runSettings" placeholder="输入运行设置">
+  <label for="runParameter2">运行参数2：负载电流（A）</label>
+  <input type="number" id="runParameter2" placeholder="输入负载电流">
 
-  <button onclick="showResults()">查看结果</button>
+  <label for="controlIndicator1">控制指标1：电压波动 &lt;（%）</label>
+  <input type="number" id="controlIndicator1" placeholder="输入电压波动阈值">
+
+  <label for="controlIndicator2">控制指标2：效率 &gt;（%）</label>
+  <input type="number" id="controlIndicator2" placeholder="输入效率阈值">
+
+  <button onclick="optimizeControlParameters()">优化控制参数</button>
 
   <div id="result"></div>
 </div>
 
 <script>
-  function showResults() {
-    var controlIndicator = document.getElementById("controlIndicator").value;
-    var runSettings = document.getElementById("runSettings").value;
+  function optimizeControlParameters() {
+    var runParameter1 = document.getElementById("runParameter1").value;
+    var runParameter2 = document.getElementById("runParameter2").value;
+    var controlIndicator1 = document.getElementById("controlIndicator1").value;
+    var controlIndicator2 = document.getElementById("controlIndicator2").value;
+
     var resultDiv = document.getElementById("result");
 
-    // 在这里执行你的处理逻辑，生成结果
-    var result = "控制指标: " + controlIndicator + "<br>运行设置: " + runSettings;
+    // 在这里执行控制参数优化的算法逻辑，生成优化结果
+    var optimizedParameters = runParameter1*runParameter2;
+
+    var result = "优化后的控制参数：" + optimizedParameters;
     resultDiv.innerHTML = result;
   }
 </script>
