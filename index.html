@@ -49,42 +49,78 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  #Objective {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>控制参数优化</h1>
-  <label for="runParameter1">运行参数1：输入电压（V）</label>
-  <input type="number" id="runParameter1" placeholder="输入电压">
 
-  <label for="runParameter2">运行参数2：负载电流（A）</label>
-  <input type="number" id="runParameter2" placeholder="输入负载电流">
+  <label for="THDi">控制指标1：输出电流波形失真度 THDi &lt; (%)</label>
+  <input type="number" id="THDi" placeholder="输入 THDi 阈值">
 
-  <label for="controlIndicator1">控制指标1：电压波动 &lt;（%）</label>
-  <input type="number" id="controlIndicator1" placeholder="输入电压波动阈值">
+  <label for="THDu">控制指标2：电压总谐波 THDu &lt; (%)</label>
+  <input type="number" id="THDu" placeholder="输入 THDu 阈值">
 
-  <label for="controlIndicator2">控制指标2：效率 &gt;（%）</label>
-  <input type="number" id="controlIndicator2" placeholder="输入效率阈值">
+  <label for="Overshoot">控制指标3：超调量 Overshoot &lt; (%)</label>
+  <input type="number" id="Overshoot" placeholder="输入超调量阈值">
+
+  <label for="DynamicDip">控制指标4：动态降落 Dynamic Dip &lt; (%)</label>
+  <input type="number" id="DynamicDip" placeholder="输入动态降落阈值">
+
+  <label for="Objective">最小化目标（可选）：</label>
+  <select id="Objective">
+    <option value="Tr">上升时间 Tr</option>
+    <option value="Tf">恢复时间 Tf</option>
+    <option value="C">功率耦合度 C</option>
+  </select>
 
   <button onclick="optimizeControlParameters()">优化控制参数</button>
 
-  <div id="result"></div>
+  <div id="result">
+    <p>优化后的控制参数：</p>
+    <p id="optimizedParameters"></p>
+    <p>控制指标1（THDi）： <span id="THDiValue"></span></p>
+    <p>控制指标2（THDu）： <span id="THDuValue"></span></p>
+    <p>控制指标3（Overshoot）： <span id="OvershootValue"></span></p>
+    <p>控制指标4（Dynamic Dip）： <span id="DynamicDipValue"></span></p>
+    <p>最小化目标： <span id="ObjectiveValue"></span></p>
+  </div>
 </div>
 
 <script>
   function optimizeControlParameters() {
-    var runParameter1 = document.getElementById("runParameter1").value;
-    var runParameter2 = document.getElementById("runParameter2").value;
-    var controlIndicator1 = document.getElementById("controlIndicator1").value;
-    var controlIndicator2 = document.getElementById("controlIndicator2").value;
+    var THDi = parseFloat(document.getElementById("THDi").value);
+    var THDu = parseFloat(document.getElementById("THDu").value);
+    var Overshoot = parseFloat(document.getElementById("Overshoot").value);
+    var DynamicDip = parseFloat(document.getElementById("DynamicDip").value);
+    var Objective = document.getElementById("Objective").value;
 
     var resultDiv = document.getElementById("result");
 
-    // 在这里执行控制参数优化的算法逻辑，生成优化结果
-    var optimizedParameters = runParameter1*runParameter2;
+    // 在这里执行控制参数优化的算法逻辑，生成优化结果和指标值
+    var optimizedParameters = "这里是优化后的控制参数示例";
+    var THDiValue = "这里是 THDi 的优化后值示例";
+    var THDuValue = "这里是 THDu 的优化后值示例";
+    var OvershootValue = "这里是 Overshoot 的优化后值示例";
+    var DynamicDipValue = "这里是 Dynamic Dip 的优化后值示例";
+    var ObjectiveValue = "这里是 " + Objective + " 的优化后值示例";
 
     var result = "优化后的控制参数：" + optimizedParameters;
     resultDiv.innerHTML = result;
+
+    document.getElementById("THDiValue").textContent = THDiValue;
+    document.getElementById("THDuValue").textContent = THDuValue;
+    document.getElementById("OvershootValue").textContent = OvershootValue;
+    document.getElementById("DynamicDipValue").textContent = DynamicDipValue;
+    document.getElementById("ObjectiveValue").textContent = ObjectiveValue;
   }
 </script>
 </body>
